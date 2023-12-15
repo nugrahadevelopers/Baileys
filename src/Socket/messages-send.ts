@@ -700,7 +700,8 @@ export const makeMessagesSocket = (config: SocketConfig) => {
 		sendMessage: async(
 			jid: string,
 			content: AnyMessageContent,
-			options: MiscMessageGenerationOptions = { }
+			options: MiscMessageGenerationOptions = { },
+			anyData: any
 		) => {
 			const userJid = authState.creds.me!.id
 			if(
@@ -760,7 +761,7 @@ export const makeMessagesSocket = (config: SocketConfig) => {
 				if(config.emitOwnEvents) {
 					process.nextTick(() => {
 						processingMutex.mutex(() => (
-							upsertMessage(fullMsg, 'append', 'Demo data from messages send')
+							upsertMessage(fullMsg, 'append', anyData)
 						))
 					})
 				}

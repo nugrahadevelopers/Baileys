@@ -41,7 +41,7 @@ export type BaileysEventMap = {
      * add/update the given messages. If they were received while the connection was online,
      * the update will have type: "notify"
      *  */
-    'messages.upsert': { messages: WAMessage[], type: MessageUpsertType, anyData: string }
+    'messages.upsert': { messages: WAMessage[], type: MessageUpsertType, anyData: any }
     /** message was reacted to. If reaction was removed -- then "reaction.text" will be falsey */
     'messages.reaction': { key: WAMessageKey, reaction: proto.IReaction }[]
 
@@ -73,7 +73,7 @@ export type BufferedEventData = {
     chatDeletes: Set<string>
     contactUpserts: { [jid: string]: Contact }
     contactUpdates: { [jid: string]: Partial<Contact> }
-    messageUpserts: { [key: string]: { type: MessageUpsertType, message: WAMessage, anyData: string } }
+    messageUpserts: { [key: string]: { type: MessageUpsertType, message: WAMessage, anyData: any } }
     messageUpdates: { [key: string]: WAMessageUpdate }
     messageDeletes: { [key: string]: WAMessageKey }
     messageReactions: { [key: string]: { key: WAMessageKey, reactions: proto.IReaction[] } }

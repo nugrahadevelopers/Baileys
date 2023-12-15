@@ -836,7 +836,7 @@ export const makeChatsSocket = (config: SocketConfig) => {
 		])
 	}
 
-	const upsertMessage = ev.createBufferedFunction(async(msg: WAMessage, type: MessageUpsertType, anyData: string) => {
+	const upsertMessage = ev.createBufferedFunction(async(msg: WAMessage, type: MessageUpsertType, anyData: any) => {
 		ev.emit('messages.upsert', { messages: [msg], type, anyData: anyData })
 
 		if(!!msg.pushName) {
