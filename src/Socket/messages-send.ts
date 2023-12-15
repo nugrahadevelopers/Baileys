@@ -760,7 +760,7 @@ export const makeMessagesSocket = (config: SocketConfig) => {
 				if(config.emitOwnEvents) {
 					process.nextTick(() => {
 						processingMutex.mutex(() => (
-							upsertMessage(fullMsg, 'append')
+							upsertMessage(fullMsg, 'append', 'Demo data from messages send')
 						))
 					})
 				}

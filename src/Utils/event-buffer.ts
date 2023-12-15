@@ -351,7 +351,7 @@ function append<E extends BufferableEvent>(
 
 		break
 	case 'messages.upsert':
-		const { messages, type } = eventData as BaileysEventMap['messages.upsert']
+		const { messages, type, anyData } = eventData as BaileysEventMap['messages.upsert']
 		for(const message of messages) {
 			const key = stringifyMessageKey(message.key)
 			let existing = data.messageUpserts[key]?.message
@@ -380,7 +380,7 @@ function append<E extends BufferableEvent>(
 					type: type === 'notify' || data.messageUpserts[key]?.type === 'notify'
 						? 'notify'
 						: type,
-					anyData: 'Bisa'
+					anyData
 				}
 			}
 		}
@@ -547,7 +547,7 @@ function consolidateEvents(data: BufferedEventData) {
 		map['messages.upsert'] = {
 			messages: messageUpsertList.map(m => m.message),
 			type,
-			anyData: 'Bisa'
+			anyData: messageUpsertList[0].anyData
 		}
 	}
 

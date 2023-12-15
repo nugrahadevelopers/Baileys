@@ -652,7 +652,7 @@ export const makeMessagesRecvSocket = (config: SocketConfig) => {
 						msg.messageTimestamp = +node.attrs.t
 
 						const fullMsg = proto.WebMessageInfo.fromObject(msg)
-						await upsertMessage(fullMsg, 'append')
+						await upsertMessage(fullMsg, 'append', 'Dummy data for message recv')
 					}
 				}
 			),
@@ -720,7 +720,7 @@ export const makeMessagesRecvSocket = (config: SocketConfig) => {
 
 					cleanMessage(msg, authState.creds.me!.id)
 
-					await upsertMessage(msg, node.attrs.offline ? 'append' : 'notify')
+					await upsertMessage(msg, node.attrs.offline ? 'append' : 'notify', 'Dummy data from messages recv')
 				}
 			),
 			sendMessageAck(node)
@@ -863,7 +863,7 @@ export const makeMessagesRecvSocket = (config: SocketConfig) => {
 			}
 
 			const protoMsg = proto.WebMessageInfo.fromObject(msg)
-			upsertMessage(protoMsg, call.offline ? 'append' : 'notify')
+			upsertMessage(protoMsg, call.offline ? 'append' : 'notify', 'Dummy data from message recv')
 		}
 	})
 
